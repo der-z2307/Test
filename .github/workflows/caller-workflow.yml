@@ -1,0 +1,17 @@
+name: Caller Workflow
+on: [push]
+
+jobs:
+  call-workflow:
+    uses: der-z2307/Test/.github/workflows/called-workflow.yml@{ref}
+    with:
+      my_input: "World"
+    # Map outputs from the called workflow to the caller job's outputs if needed
+    # outputs:
+    #   caller_output_name: ${{ uses.call-workflow.outputs.my_output }}
+
+  use-output:
+    needs: call-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Output from called workflow: ${{ needs.call-workflow.outputs.my_output }}"
