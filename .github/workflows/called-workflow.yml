@@ -19,7 +19,4 @@ jobs:
       - name: Set output
         id: set-output
         run: echo "value=Hello ${{ inputs.my_input }}" >> $GITHUB_OUTPUT
-Verwende Code mit Vorsicht.
 
-In the caller workflow (e.g., caller-workflow.yml):
-You call the reusable workfl
