@@ -38,4 +38,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/called-workflow-json.yml
     with: 
-      my_input: ${{ github.event.client_payload.original_payload }}
+      my_input: ${{ github.event.client_payload.original_payload.Elements.DropLocation }}
