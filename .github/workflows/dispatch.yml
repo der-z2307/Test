@@ -1,5 +1,5 @@
 name: Repository Dispatch Workflow
-run-name: Test ${{ github.event.client_payload.environment }}"
+run-name: Run for ${{ github.event.client_payload.product }}  ${{ github.event.client_payload.version }} ${{ github.event.client_payload.build }} ${{ github.event.client_payload.buildversion }} 
 on:
   repository_dispatch:
     types: [mein-event]
