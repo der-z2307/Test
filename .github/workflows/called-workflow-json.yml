@@ -19,4 +19,4 @@ jobs:
     steps:
       - name: Set output
         id: set-output
-        run: echo "value=Hello ${{ fromJson(inputs.my_input) }}" 
+        run: echo "value=Hello ${{ inputs.my_input }}" 
