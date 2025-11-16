@@ -1,4 +1,4 @@
-$token = "xxx"
+$token = ""
 $owner = "der-z2307"
 $repo = "Test"
 
@@ -7,7 +7,10 @@ $body = @{
     client_payload = @{
         ref = "refs/heads/main"
         environment = "staging"
-        version = "2.0.0"
+        project = "TIA Portal"
+        version = "21.1"
+        build = "TPE.Buliddefinition"
+        buildversion= "21.00.00.00_02.00.01.32"
         features = @("featureA", "featureB")
         metadata = @{
             build_id = 98765
@@ -23,11 +26,10 @@ $body = @{
     }
 } | ConvertTo-Json -Depth 10
 
-Invoke-RestMethod `
-    -Uri "https://github.com/api/v3/repos/$owner/$repo/dispatches" `
-    -Method Post `
-    -Headers @{
+$head = @{
         Authorization = "Bearer $token"
         Accept = "application/vnd.github+json"
-    } `
-    -Body $body
+        }
+$url = "https://api.github.com/repos/$owner/$repo/dispatches"
+Invoke-RestMethod -Uri "https://api.github.com/repos/$owner/$repo/dispatches" -Method Post -Headers $head -Body $body
+
