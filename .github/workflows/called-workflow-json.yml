@@ -1,4 +1,4 @@
-name: Called Workflow
+name: Called Workflow test json
 on:
   workflow_call:
     inputs:
