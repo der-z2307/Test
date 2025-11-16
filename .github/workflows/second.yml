@@ -39,3 +39,11 @@ jobs:
     uses: ./.github/workflows/called-workflow-json.yml
     with: 
       my_input: ${{ github.event.client_payload.original_payload.Elements.DropLocation }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke workflow in another repo with inputs
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: workflow_dispatch.yml
+        inputs: ${{ toJson(github.event.client_payload.original_payload) }}

@@ -1,0 +1,16 @@
+name: setup
+
+on:
+  workflow_dispatch :
+    inputs:
+      config_file:
+        description: 'json file containing the configuration for the runners'
+        required: true
+        type: string
+        
+jobs:
+  setup-auth:
+    name: setup-authentication
+    uses: ./.github/workflows/single-device-authentication.yml
+    with:
+      config_file: ${{  inputs.config_file }}

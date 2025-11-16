@@ -1,0 +1,23 @@
+# Source - https://stackoverflow.com/q/74522531
+# Posted by Maxime Debarbat
+# Retrieved 2025-11-16, License - CC BY-SA 4.0
+
+name: single-device-authentication
+
+on: 
+  workflow_call:
+    inputs:
+      config_file:
+        description: 'json file containing the configuration for jetson runners'
+        required: true
+        type: string
+      
+
+jobs:
+  json-parser:
+    name: parser
+    runs-on: ubuntu-latest
+    steps:
+      - name: parser script
+        run: | 
+          echo "${{ inputs.config_file }}"
