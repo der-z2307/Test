@@ -2,7 +2,7 @@
 # Posted by Maxime Debarbat
 # Retrieved 2025-11-16, License - CC BY-SA 4.0
 
-name: single-device-authentication
+name: Parse one input json object
 
 on: 
   workflow_call:

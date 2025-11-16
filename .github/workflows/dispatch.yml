@@ -1,4 +1,4 @@
-name: Repository Dispatch Workflow
+name: Repository Dispatch Trigger
 run-name: Run for ${{ github.event.client_payload.project }}  ${{ github.event.client_payload.version }} ${{ github.event.client_payload.build }} ${{ github.event.client_payload.buildversion }} 
 on:
   repository_dispatch:
@@ -46,3 +46,10 @@ jobs:
     uses: ./.github/workflows/called-workflow.yml
     with: 
       my_input: "Earth"
+      
+  call-workflow-with-json:
+    needs: build
+    uses: ./.github/workflows/called-workflow-2-inputs.yml
+    with: 
+      my_input: "Earth"
+      config_file: ${{ toJson(github.event.client_payload) }}

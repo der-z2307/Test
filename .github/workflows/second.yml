@@ -40,7 +40,7 @@ jobs:
     with: 
       my_input: ${{ github.event.client_payload.original_payload.Elements.DropLocation }}
   test:
-    name: setup-authentication
+    name: Call workflow with one json object
     uses: ./.github/workflows/called-workflow-json-dispatch.yml
     with:
       config_file: ${{  toJson(github.event.client_payload.original_payload) }}
