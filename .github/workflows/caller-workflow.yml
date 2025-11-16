@@ -1,8 +1,9 @@
 name: Caller Workflow
+on: [push]
 
 jobs:
   call-workflow:
-    uses: .github/workflows/called-workflow.yml@{ref}
+    uses: {owner}/{repo}/.github/workflows/called-workflow.yml@{ref}
     with:
       my_input: "World"
     # Map outputs from the called workflow to the caller job's outputs if needed
