@@ -29,6 +29,6 @@ jobs:
           echo " Write variable from parameter_json "
           echo $parametersJson | jq
   call-workflow:
-    uses: der-z2307/Test/.github/workflows/called-workflow.yml@{ref}
+    uses: .github/workflows/called-workflow.yml
     with:
       my_input: ${{ github.event.client_payload.Elements.DropLocation }}
