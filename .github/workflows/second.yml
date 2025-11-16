@@ -6,6 +6,12 @@ on:
 env:
   parametersJson: ${{ toJson(github.event.client_payload) }}
 jobs:
+  call-workflow:
+    needs: build
+    uses: .github/workflows/called-workflow.yml
+    with:
+      my_input: "World"
+      
   build:
     runs-on: ubuntu-latest
     steps:
@@ -28,10 +34,4 @@ jobs:
         run: |
           echo " Write variable from parameter_json "
           echo $parametersJson | jq
-  call-workflow:
-    uses: .github/workflows/called-workflow.yml@{ref}
-    with:
-      my_input: "World"
-    # Map outputs from the called workflow to the caller job's outputs if needed
-    # outputs:
-    #   caller_output_name: ${{ uses.call-workflow.outputs.my_output }}
+  
