@@ -1,5 +1,5 @@
 name: Repository Dispatch Workflow Second smae 
-run-name: Run for ${{ github.event.client_payload.original_payload.product }}  ${{ github.event.client_payload.original_payload.version }} ${{ github.event.client_payload.original_payload.build }} ${{ github.event.client_payload.original_payload.buildversion }} 
+run-name: Run for ${{ github.event.client_payload.original_payload.project }}  ${{ github.event.client_payload.original_payload.version }} ${{ github.event.client_payload.original_payload.build }} ${{ github.event.client_payload.original_payload.buildversion }} 
 on:
   repository_dispatch:
     types: [trigger-second]
@@ -37,4 +37,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/called-workflow-json.yml
     with: 
-      my_input: $parametersJson
+      my_input: ${{ github.env.parametersJson }}
