@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [trigger-second]
 env:
-  parametersJson: ${{ toJson(github.event.client_payload) }}
+  parametersJson: ${{ toJson(github.event.client_payload.original_payload) }}
   hase: "test"
 jobs:
   build:
@@ -23,8 +23,8 @@ jobs:
           echo "Features: ${{ join(github.event.client_payload.features, ', ') }}"
           echo "Build ID: ${{ github.event.client_payload.metadata.build_id }}"
           echo "Timestamp: ${{ github.event.client_payload.metadata.timestamp }}"
-          echo "Type: ${{ github.event.client_payload.delivery_type }}"
-          echo "Eements : ${{ github.event.client_payload.Elements.DropLocation }}"
+          echo "Type: ${{ github.event.client_payload.original_payload.delivery_type }}"
+          echo "Eements : ${{ github.event.client_payload.original_payload.Elements.DropLocation }}"
       - name: Print Env from payload
         run: |
           echo " Write variable from parameter_json "
@@ -38,4 +38,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/called-workflow-json.yml
     with: 
-      my_input: ${{ github.env.hase }}
+      my_input: ${{ github.event.client_payload.original_payload.delivery_type }}
