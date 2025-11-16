@@ -1,5 +1,4 @@
 name: Caller Workflow
-on: [push]
 
 jobs:
   call-workflow:
@@ -7,8 +6,8 @@ jobs:
     with:
       my_input: "World"
     # Map outputs from the called workflow to the caller job's outputs if needed
-    # outputs:
-    #   caller_output_name: ${{ uses.call-workflow.outputs.my_output }}
+    outputs:
+      caller_output_name: ${{ uses.call-workflow.outputs.my_output }}
 
   use-output:
     needs: call-workflow
