@@ -5,6 +5,7 @@ on:
     types: [trigger-second]
 env:
   parametersJson: ${{ toJson(github.event.client_payload) }}
+  hase: "test"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,4 +38,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/called-workflow-json.yml
     with: 
-      my_input: ${{ github.event.client_payload.Elements.DropLocation }}
+      my_input: ${{ github.env.hase }}
