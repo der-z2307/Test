@@ -1,9 +1,8 @@
 name: Caller Workflow
-on: [push]
 
 jobs:
   call-workflow:
-    uses: der-z2307/Test/.github/workflows/called-workflow.yml@{ref}
+    uses: .github/workflows/called-workflow.yml@{ref}
     with:
       my_input: "World"
     # Map outputs from the called workflow to the caller job's outputs if needed
