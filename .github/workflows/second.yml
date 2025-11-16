@@ -6,10 +6,6 @@ on:
 env:
   parametersJson: ${{ toJson(github.event.client_payload) }}
 jobs:
-  caller:
-    uses: der-z2307/Test/.github/workflows/called-workflow.yml
-    with:
-      my_input: "World"
   build:
     runs-on: ubuntu-latest
     steps:
