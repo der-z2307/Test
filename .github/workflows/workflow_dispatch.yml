@@ -1,8 +1,10 @@
 name: Repository Dispatch Workflow
 run-name: Run for ${{ github.event.client_payload.project }}  ${{ github.event.client_payload.version }} ${{ github.event.client_payload.build }} ${{ github.event.client_payload.buildversion }} 
 on:
-  repository_dispatch:
-    types: [mein-event]
+  workflow_dispatch:
+    inputs: 
+      json_input:
+        type: string
 env:
   parametersJson: ${{ toJson(github.event.client_payload) }}
 jobs:
