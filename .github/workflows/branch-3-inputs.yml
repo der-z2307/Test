@@ -1,0 +1,36 @@
+name: Parse two input objects (string,json)
+on:
+  workflow_call:
+    inputs:
+      my_input:
+        required: true
+        type: string
+      my_input2:
+        required: true
+        type: string
+      config_file:
+        description: 'json file containing the configuration for jetson runners'
+        required: true
+        type: string
+    outputs:
+      my_output:
+        description: "An output value"
+        value: ${{ jobs.example_job.outputs.my_output_result }}
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    outputs:
+      my_output_result: ${{ steps.set-output.outputs.value }}
+    steps:
+      - name: Set output
+        id: set-output
+        run: echo "value=Hello ${{ inputs.my_input }}" >> $GITHUB_OUTPUT
+
+  json-parser:
+    name: parser
+    runs-on: ubuntu-latest
+    steps:
+      - name: parser script
+        run: | 
+          echo "${{ inputs.config_file }}"
