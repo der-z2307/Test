@@ -55,7 +55,6 @@ jobs:
 
       config_file: ${{ toJson(github.event.client_payload) }}
   call-workflow-with-json-2:
-    needs: build
     uses: ./.github/workflows/branch-3-inputs.yml
     with: 
       my_input: "Earth"
