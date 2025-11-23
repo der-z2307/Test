@@ -34,3 +34,11 @@ jobs:
       - name: parser script
         run: | 
           echo "${{ inputs.config_file }}"
+      - name: Save GitHub event payload to file
+        run: echo "${{ toJson(inputs.config_file) }}" > gh-payload.json
+
+      - name: Upload the saved payload file (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-input
+          path: gh-input.json
